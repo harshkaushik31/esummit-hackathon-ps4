@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+python-multipart
+Pillow
+cloudinary
+python-dotenv
+langgraph
+langchain-huggingface
+typing-extensions; python_version < "3.11"
+numpy<2; python_version < "3.11"
+numpy>=1.26; python_version >= "3.11"
+opencv-python<4.11; python_version < "3.11"
+opencv-python>=4.11; python_version >= "3.11"
+tensorflow==2.10.0; python_version < "3.11"
+tensorflow>=2.12,<2.22; python_version >= "3.11"
