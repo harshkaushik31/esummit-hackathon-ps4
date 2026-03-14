@@ -2,9 +2,6 @@
 __pycache__/
 *.pyc
 
-# ML models
-*.keras
-*.h5
 
 # datasets
 dataset/

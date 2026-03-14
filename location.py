@@ -28,7 +28,7 @@ except ImportError:
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.openapi.utils import get_openapi
 from fastapi.responses import HTMLResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from PIL import Image
 from PIL.ExifTags import TAGS, GPSTAGS
 
@@ -206,6 +206,26 @@ class ImageLocationResult(BaseModel):
     description: str = "pothole detected"
 
 
+class RTIGenerationRequest(BaseModel):
+    user_data: str = Field(
+        ...,
+        description=(
+            "Free-text user details that include complaint counts and optional dates. "
+            "Example: 'name: Rahul, area: Koramangala, total complaints: 12, "
+            "pending complaints: 5, dates: 2025-11-22, 2025-12-14'"
+        ),
+    )
+
+
+class RTIGenerationResponse(BaseModel):
+    applicant_name: str
+    area: str
+    total_complaints: int
+    pending_complaints: int
+    complaint_dates: list[str]
+    rti_text: str
+
+
 # ── EXIF / GPS Helpers ──────────────────────────────────────────────────────
 
 def _dms_to_decimal(dms_tuple, ref: str) -> float:
@@ -361,6 +381,44 @@ async def upload_images(
         )
 
     return results
+
+
+@app.post("/generate-rti/", response_model=RTIGenerationResponse)
+async def generate_rti_endpoint(payload: RTIGenerationRequest):
+    """
+    Generate an Indian RTI application from free-text user data.
+
+    Input must include complaint counts. Complaint dates are optional and are
+    only included in the RTI when explicitly present in `user_data`.
+    """
+    if not payload.user_data.strip():
+        raise HTTPException(status_code=400, detail="user_data cannot be empty.")
+
+    try:
+        # Lazy import keeps the main app usable even if RTI dependencies are absent.
+        from file_rti import generate_rti_from_user_data
+
+        generated_state = generate_rti_from_user_data(payload.user_data)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to generate RTI from provided user_data: {exc}",
+        ) from exc
+
+    report = str(generated_state.get("report", "")).strip()
+    if not report:
+        raise HTTPException(status_code=500, detail="RTI generation returned empty text.")
+
+    return RTIGenerationResponse(
+        applicant_name=str(generated_state["applicant_name"]),
+        area=str(generated_state["area"]),
+        total_complaints=int(generated_state["total_complaints"]),
+        pending_complaints=int(generated_state["unsolved_complaints"]),
+        complaint_dates=list(generated_state["unsolved_complaint_dates"]),
+        rti_text=report,
+    )
 
 
 # ── Video Helpers ───────────────────────────────────────────────────────────
