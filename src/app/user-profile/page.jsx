@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import Navbar from '@/components/Navbar'
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -32,21 +33,17 @@ export default function ProfilePage() {
     getUserDetails();
   }, [])
 
-  // Log data whenever it changes
-  useEffect(() => {
-    if (Object.keys(data).length > 0) {
-      console.log("Updated data state:", data);
-    }
-  }, [data]);
-
   if (loading) {
     return (
-      <div className="p-6">
-        <h1 className="text-2xl font-bold mb-4">Profile Page</h1>
-        <hr className="mb-4" />
-        <div className="flex items-center space-x-2">
-          <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-          <span>Loading user data...</span>
+      <div className="min-h-screen bg-black text-white relative z-10 overflow-hidden font-mono">
+        <Navbar />
+        <div className="max-w-4xl mx-auto p-6 pt-24 relative z-10">
+          <h1 className="text-3xl font-bold mb-4 tracking-widest uppercase text-cyan-400 drop-shadow-[0_0_8px_currentColor]">Data_Log // Profile</h1>
+          <div className="border-b border-cyan-500/30 mb-8" />
+          <div className="flex items-center space-x-4 bg-gray-950 p-6 border border-cyan-500/30 rounded-lg">
+            <div className="w-6 h-6 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin"></div>
+            <span className="text-cyan-300 tracking-widest uppercase text-sm animate-pulse">Establishing secure link...</span>
+          </div>
         </div>
       </div>
     );
@@ -54,51 +51,89 @@ export default function ProfilePage() {
 
   if (error) {
     return (
-      <div className="p-6">
-        <h1 className="text-2xl font-bold mb-4">Profile Page</h1>
-        <hr className="mb-4" />
-        <div className="text-red-600">
-          <p>Error: {error}</p>
-          <button 
-            onClick={getUserDetails}
-            className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          >
-            Retry
-          </button>
+      <div className="min-h-screen bg-black text-white relative z-10 overflow-hidden font-mono">
+        <Navbar />
+        <div className="max-w-4xl mx-auto p-6 pt-24 relative z-10">
+          <h1 className="text-3xl font-bold mb-4 tracking-widest uppercase text-cyan-400 drop-shadow-[0_0_8px_currentColor]">Data_Log // Profile</h1>
+          <div className="border-b border-cyan-500/30 mb-8" />
+          <div className="bg-red-950/50 border border-red-500/50 p-6 rounded-lg shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+            <p className="text-red-400 tracking-wider">CRITICAL ERROR: {error}</p>
+            <button 
+              onClick={getUserDetails}
+              className="mt-6 px-6 py-2 bg-red-500/20 border border-red-500 text-red-400 uppercase tracking-widest text-xs hover:bg-red-500 hover:text-white transition-all shadow-[0_0_10px_rgba(239,68,68,0.3)]"
+            >
+              Retry_Connection
+            </button>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Profile Page</h1>
-      <hr className="mb-4" />
+    <div className="min-h-screen bg-black text-white relative z-10 overflow-hidden font-mono">
+      {/* Grid Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+      <Navbar />
       
-      {Object.keys(data).length === 0 ? (
-        <h2 className="text-lg text-gray-600">Did not get User Data</h2>
-      ) : (
-        <div className="space-y-4">
-          <h2 className="text-xl font-semibold">User Information:</h2>
-          <div className="bg-gray-50 p-4 rounded-lg space-y-2">
-            <p><strong>ID:</strong> {data._id || 'N/A'}</p>
-            <p><strong>Name:</strong> {data.name || 'N/A'}</p>
-            <p><strong>Email:</strong> {data.email || 'N/A'}</p>
-            <p><strong>Role:</strong> {data.role || 'N/A'}</p>
-            <p><strong>Complaints:</strong> {numberOfComplaints} </p>
+      <div className="max-w-4xl mx-auto p-6 pt-24 relative z-10">
+        <h1 className="text-3xl font-bold mb-4 tracking-widest uppercase text-cyan-400 drop-shadow-[0_0_8px_currentColor] flex items-center gap-3">
+          <span className="w-2 h-6 bg-cyan-400 animate-pulse block"></span>
+          Data_Log // Profile
+        </h1>
+        <div className="border-b border-cyan-500/30 mb-8" />
+        
+        {Object.keys(data).length === 0 ? (
+          <h2 className="text-lg text-slate-500 tracking-widest">NO TELEMETRY DATA FOUND.</h2>
+        ) : (
+          <div className="space-y-8">
+            <div className="flex items-center gap-2 mb-2">
+               <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_5px_currentColor]"></span>
+               <h2 className="text-sm font-semibold tracking-widest uppercase text-emerald-400">Node_Identity_Verified:</h2>
+            </div>
+            
+            <div className="bg-gray-950 p-8 border border-cyan-500/30 rounded-xl shadow-[0_0_20px_rgba(6,182,212,0.1)] relative group isolate">
+              {/* Corner decor */}
+              <div className="absolute -top-px -left-px w-4 h-4 border-t-2 border-l-2 border-cyan-400/50"></div>
+              <div className="absolute -bottom-px -right-px w-4 h-4 border-b-2 border-r-2 border-cyan-400/50"></div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-12">
+                <div className="border-b border-slate-800 pb-2">
+                  <span className="text-xs text-slate-500 uppercase tracking-widest block mb-1">Assigned_ID</span>
+                  <span className="text-cyan-100 font-bold">{data._id || 'N/A'}</span>
+                </div>
+                <div className="border-b border-slate-800 pb-2">
+                  <span className="text-xs text-slate-500 uppercase tracking-widest block mb-1">Designation</span>
+                  <span className="text-cyan-100 font-bold">{data.name || 'N/A'}</span>
+                </div>
+                <div className="border-b border-slate-800 pb-2">
+                  <span className="text-xs text-slate-500 uppercase tracking-widest block mb-1">Comms_Link</span>
+                  <span className="text-cyan-100 font-bold">{data.email || 'N/A'}</span>
+                </div>
+                <div className="border-b border-slate-800 pb-2">
+                  <span className="text-xs text-slate-500 uppercase tracking-widest block mb-1">Access_Level</span>
+                  <span className="text-cyan-100 font-bold uppercase">{data.role || 'N/A'}</span>
+                </div>
+                <div className="border-b border-slate-800 pb-2 bg-cyan-950/30 -mx-4 px-4 rounded-md">
+                  <span className="text-xs text-cyan-500 uppercase tracking-widest block mb-1 font-bold">Total_Logged_Anomalies</span>
+                  <span className="text-cyan-300 font-bold text-xl">{numberOfComplaints}</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Debug section */}
+            <details className="mt-12 bg-gray-950 border border-slate-800 rounded-lg overflow-hidden group">
+              <summary className="cursor-pointer text-slate-500 hover:text-cyan-400 hover:bg-slate-900 transition-colors p-4 text-xs tracking-widest uppercase flex items-center justify-between outline-none">
+                <span>Access Raw Hex Dump (Debug)</span>
+                <span className="text-lg">+</span>
+              </summary>
+              <pre className="p-4 bg-black/80 overflow-auto text-xs text-teal-500 border-t border-slate-800">
+                {JSON.stringify(data, null, 2)}
+              </pre>
+            </details>
           </div>
-          
-          {/* Debug section - TODO: remove in production */}
-          <details className="mt-6">
-            <summary className="cursor-pointer text-blue-600 hover:text-blue-800">
-              View Raw Data (Debug)
-            </summary>
-            <pre className="mt-2 p-4 bg-gray-100 rounded overflow-auto text-sm">
-              {JSON.stringify(data, null, 2)}
-            </pre>
-          </details>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   )
 }

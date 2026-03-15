@@ -104,15 +104,15 @@ export default async function AllComplaintsPage({ params }) {
   const stats = await getComplaintStats(deptSlug);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Link
                 href={`/department/${deptSlug}`}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-gray-400 hover:text-cyan-400 transition-colors"
               >
                 <svg
                   className="w-6 h-6"
@@ -132,10 +132,10 @@ export default async function AllComplaintsPage({ params }) {
                 <div className="flex items-center gap-3">
                   <span className="text-3xl">📋</span>
                   <div>
-                    <h1 className="text-2xl font-bold text-gray-900">
+                    <h1 className="text-2xl font-bold text-cyan-100">
                       All Complaints
                     </h1>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-cyan-400">
                       {department.name} • {complaints.length} total complaints
                     </p>
                   </div>
@@ -151,21 +151,21 @@ export default async function AllComplaintsPage({ params }) {
         
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-white rounded-lg shadow-sm border p-4">
+          <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-lg shadow-sm border p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs text-gray-600 mb-1">Total</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+                <p className="text-xs text-cyan-400 mb-1">Total</p>
+                <p className="text-2xl font-bold text-cyan-100">{stats.total}</p>
               </div>
               <div className="bg-blue-100 p-3 rounded-lg">
                 <span className="text-2xl">📊</span>
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-lg shadow-sm border p-4">
+          <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-lg shadow-sm border p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs text-gray-600 mb-1">Pending</p>
+                <p className="text-xs text-cyan-400 mb-1">Pending</p>
                 <p className="text-2xl font-bold text-yellow-600">{stats.pending}</p>
               </div>
               <div className="bg-yellow-100 p-3 rounded-lg">
@@ -173,10 +173,10 @@ export default async function AllComplaintsPage({ params }) {
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-lg shadow-sm border p-4">
+          <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-lg shadow-sm border p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs text-gray-600 mb-1">In Progress</p>
+                <p className="text-xs text-cyan-400 mb-1">In Progress</p>
                 <p className="text-2xl font-bold text-blue-600">{stats.inProgress}</p>
               </div>
               <div className="bg-blue-100 p-3 rounded-lg">
@@ -184,10 +184,10 @@ export default async function AllComplaintsPage({ params }) {
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-lg shadow-sm border p-4">
+          <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-lg shadow-sm border p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs text-gray-600 mb-1">Resolved</p>
+                <p className="text-xs text-cyan-400 mb-1">Resolved</p>
                 <p className="text-2xl font-bold text-green-600">{stats.resolved}</p>
               </div>
               <div className="bg-green-100 p-3 rounded-lg">
@@ -198,9 +198,9 @@ export default async function AllComplaintsPage({ params }) {
         </div>
 
         {/* Complaints List */}
-        <div className="bg-white rounded-lg shadow-sm border">
+        <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-lg shadow-sm border">
           <div className="px-6 py-4 border-b">
-            <h2 className="text-lg font-semibold text-gray-900">
+            <h2 className="text-lg font-semibold text-cyan-100">
               All Complaints
             </h2>
           </div>
@@ -215,7 +215,7 @@ export default async function AllComplaintsPage({ params }) {
               ))
             ) : (
               <div className="p-12 text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-900/50 rounded-full mb-4">
                   <svg
                     className="w-8 h-8 text-gray-400"
                     fill="none"
@@ -230,10 +230,10 @@ export default async function AllComplaintsPage({ params }) {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg font-semibold text-cyan-100 mb-2">
                   No Complaints Yet
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-cyan-400">
                   No complaints have been assigned to {department.name} yet.
                 </p>
               </div>

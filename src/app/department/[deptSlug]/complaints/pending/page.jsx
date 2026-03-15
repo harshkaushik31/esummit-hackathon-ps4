@@ -66,15 +66,15 @@ export default async function PendingComplaintsPage({ params }) {
   const pendingComplaints = await getPendingComplaints(deptSlug);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Link
                 href={`/department/${deptSlug}`}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-gray-400 hover:text-cyan-400 transition-colors"
               >
                 <svg
                   className="w-6 h-6"
@@ -94,10 +94,10 @@ export default async function PendingComplaintsPage({ params }) {
                 <div className="flex items-center gap-3">
                   <span className="text-3xl">⏳</span>
                   <div>
-                    <h1 className="text-2xl font-bold text-gray-900">
+                    <h1 className="text-2xl font-bold text-cyan-100">
                       Pending Complaints
                     </h1>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-cyan-400">
                       {department.name} • {pendingComplaints.length} pending
                     </p>
                   </div>
@@ -109,13 +109,13 @@ export default async function PendingComplaintsPage({ params }) {
             <div className="flex gap-3">
               <Link
                 href={`/department/${deptSlug}/complaints`}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
+                className="px-4 py-2 text-sm font-medium text-cyan-300 bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 border border-cyan-500/50 rounded-lg hover:bg-black"
               >
                 All Complaints
               </Link>
               <Link
                 href={`/department/${deptSlug}/complaints/resolved`}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
+                className="px-4 py-2 text-sm font-medium text-cyan-300 bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 border border-cyan-500/50 rounded-lg hover:bg-black"
               >
                 Resolved
               </Link>
@@ -145,10 +145,10 @@ export default async function PendingComplaintsPage({ params }) {
               </svg>
             </div>
             <div>
-              <h2 className="text-lg font-semibold text-gray-900">
+              <h2 className="text-lg font-semibold text-cyan-100">
                 {pendingComplaints.length} Complaints Awaiting Action
               </h2>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-cyan-400">
                 These complaints require your attention and response
               </p>
             </div>
@@ -156,7 +156,7 @@ export default async function PendingComplaintsPage({ params }) {
         </div>
 
         {/* Complaints List */}
-        <div className="bg-white rounded-lg shadow-sm border">
+        <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-lg shadow-sm border">
           <div className="divide-y">
             {pendingComplaints.length > 0 ? (
               pendingComplaints.map((complaint) => (
@@ -183,10 +183,10 @@ export default async function PendingComplaintsPage({ params }) {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg font-semibold text-cyan-100 mb-2">
                   All Caught Up!
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-cyan-400">
                   No pending complaints for {department.name} at the moment.
                 </p>
               </div>

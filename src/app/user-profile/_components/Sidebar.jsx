@@ -81,7 +81,7 @@ function Sidebar({ response }) {
       {/* Mobile Menu Button */}
       <button
         onClick={toggleMobileMenu}
-        className="md:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-lg border"
+        className="md:hidden fixed top-4 left-4 z-50 p-2 bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-lg shadow-lg border"
       >
         {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
@@ -167,7 +167,7 @@ function Sidebar({ response }) {
                       w-full text-left p-4 rounded-xl transition-all duration-200 group
                       ${
                         isActive
-                          ? "bg-white text-gray-900 shadow-lg transform scale-105"
+                          ? "bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 text-cyan-100 shadow-lg transform scale-105"
                           : "text-blue-100 hover:bg-gray-700 hover:text-white hover:transform hover:scale-105"
                       }
                     `}
@@ -178,7 +178,7 @@ function Sidebar({ response }) {
                         className={`
                           ${
                             isActive
-                              ? "text-gray-900"
+                              ? "text-cyan-100"
                               : "text-gray-200 group-hover:text-white"
                           }
                         `}
@@ -186,14 +186,14 @@ function Sidebar({ response }) {
                       <div className="flex-1">
                         <p
                           className={`font-medium ${
-                            isActive ? "text-gray-900" : ""
+                            isActive ? "text-cyan-100" : ""
                           }`}
                         >
                           {item.name}
                         </p>
                         <p
                           className={`text-xs opacity-75 ${
-                            isActive ? "text-gray-700" : "text-gray-300"
+                            isActive ? "text-cyan-300" : "text-gray-300"
                           }`}
                         >
                           {item.description}

@@ -198,13 +198,13 @@ export default function Page() {
   if (success) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
+        <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
           <div className="mb-6">
             <CheckCircle className="mx-auto text-green-500 mb-4" size={64} />
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">
+            <h1 className="text-2xl font-bold text-cyan-100 mb-2">
               Complaint Submitted Successfully!
             </h1>
-            <p className="text-gray-600">
+            <p className="text-cyan-400">
               Your complaint has been registered and will be processed soon.
             </p>
           </div>
@@ -227,14 +227,16 @@ export default function Page() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 md:p-6">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-black relative overflow-hidden p-4 md:p-6 text-cyan-50 font-mono">
+      {/* Holographic Background Grid */}
+      <div className="fixed inset-0 bg-[linear-gradient(rgba(6,182,212,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none z-0" />
+      <div className="max-w-4xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl md:text-4xl font-bold text-cyan-400 mb-2 uppercase tracking-widest drop-shadow-[0_0_8px_currentColor]">
             Register New Complaint
           </h1>
-          <p className="text-gray-600 text-lg">
+          <p className="text-cyan-50 text-lg">
             Report an issue in your area and help improve your community
           </p>
         </div>
@@ -252,20 +254,20 @@ export default function Page() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* File Upload Section */}
-          <div className="bg-white rounded-2xl shadow-xl p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-              <Camera className="mr-2" size={24} />
+          <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.1)] p-6">
+            <h2 className="text-xl font-bold text-cyan-300 mb-4 flex items-center tracking-widest uppercase">
+              <Camera className="mr-2 text-cyan-500" size={24} />
               Upload Image
             </h2>
             
             {!imagePreview ? (
               <div
                 onClick={() => fileInputRef.current?.click()}
-                className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-blue-400 hover:bg-blue-50 transition-colors cursor-pointer"
+                className="border-2 border-dashed border-cyan-500/50 rounded-xl p-8 text-center hover:border-cyan-400 hover:bg-cyan-950/50 hover:shadow-[0_0_15px_rgba(6,182,212,0.2)] transition-all cursor-pointer"
               >
-                <Upload className="mx-auto text-gray-400 mb-4" size={48} />
-                <p className="text-gray-600 mb-2">Click to upload an image of the issue</p>
-                <p className="text-sm text-gray-400">Supports: JPG, PNG, GIF (Max 10MB)</p>
+                <Upload className="mx-auto text-cyan-600 mb-4" size={48} />
+                <p className="text-cyan-100 font-bold mb-2">Click to upload an image of the issue</p>
+                <p className="text-sm text-cyan-600">Supports: JPG, PNG, GIF (Max 10MB)</p>
               </div>
             ) : (
               <div className="relative">
@@ -294,9 +296,9 @@ export default function Page() {
           </div>
 
           {/* Issue Details */}
-          <div className="bg-white rounded-2xl shadow-xl p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-              <FileText className="mr-2" size={24} />
+          <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.1)] p-6">
+            <h2 className="text-xl font-bold text-cyan-300 mb-4 flex items-center tracking-widest uppercase">
+              <FileText className="mr-2 text-cyan-500" size={24} />
               Issue Details
             </h2>
             
@@ -306,7 +308,7 @@ export default function Page() {
 
               {/* Description */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-bold text-cyan-400 mb-2 tracking-widest uppercase">
                   Description *
                 </label>
                 <textarea
@@ -315,7 +317,7 @@ export default function Page() {
                   onChange={handleInputChange}
                   placeholder="Describe the issue in detail..."
                   rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
+                  className="w-full px-4 py-3 bg-black border border-cyan-500/50 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 resize-none text-cyan-50 placeholder-cyan-800"
                   required
                 />
               </div>
@@ -323,9 +325,9 @@ export default function Page() {
           </div>
 
           {/* Location Section */}
-          <div className="bg-white rounded-2xl shadow-xl p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-              <MapPin className="mr-2" size={24} />
+          <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.1)] p-6">
+            <h2 className="text-xl font-bold text-cyan-300 mb-4 flex items-center tracking-widest uppercase">
+              <MapPin className="mr-2 text-cyan-500" size={24} />
               Location Information
             </h2>
             
@@ -335,7 +337,7 @@ export default function Page() {
                   type="button"
                   onClick={getCurrentLocation}
                   disabled={locationLoading}
-                  className="flex items-center justify-center space-x-2 bg-blue-600 text-white px-4 py-3 rounded-xl hover:bg-blue-700 disabled:bg-blue-400 transition-colors"
+                  className="flex items-center justify-center space-x-2 bg-cyan-500/20 border border-cyan-400 text-cyan-300 font-bold uppercase tracking-widest text-xs px-4 py-3 rounded-xl hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_15px_rgba(6,182,212,0.6)] disabled:bg-gray-800 disabled:border-gray-600 disabled:text-gray-500 disabled:shadow-none transition-all"
                 >
                   {locationLoading ? (
                     <Loader2 className="animate-spin" size={20} />
@@ -343,7 +345,7 @@ export default function Page() {
                     <MapPin size={20} />
                   )}
                   <span>
-                    {locationLoading ? "Getting Location..." : "Get Current Location"}
+                    {locationLoading ? "Acquiring Fix..." : "Get GPS Fix"}
                   </span>
                 </button>
               </div>
@@ -351,7 +353,7 @@ export default function Page() {
               {/* Manual Location Input */}
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-bold text-cyan-400 mb-2 tracking-widest uppercase">
                     Latitude
                   </label>
                   <input
@@ -361,12 +363,12 @@ export default function Page() {
                     onChange={handleInputChange}
                     step="any"
                     placeholder="e.g., 21.205726"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-3 bg-black border border-cyan-500/50 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-cyan-50 placeholder-cyan-800"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-bold text-cyan-400 mb-2 tracking-widest uppercase">
                     Longitude
                   </label>
                   <input
@@ -376,48 +378,48 @@ export default function Page() {
                     onChange={handleInputChange}
                     step="any"
                     placeholder="e.g., 81.824707"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-3 bg-black border border-cyan-500/50 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-cyan-50 placeholder-cyan-800"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Address/Landmark
+                <label className="block text-sm font-bold text-cyan-400 mb-2 tracking-widest uppercase">
+                  Address / Vector Details
                 </label>
                 <input
                   type="text"
                   name="address"
                   value={formData.address}
                   onChange={handleInputChange}
-                  placeholder="e.g., Near International Cricket Stadium"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="e.g., Area 51 Main Gate"
+                  className="w-full px-4 py-3 bg-black border border-cyan-500/50 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-cyan-50 placeholder-cyan-800"
                 />
               </div>
             </div>
           </div>
 
           {/* Submit Button */}
-          <div className="bg-white rounded-2xl shadow-xl p-6">
+          <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.1)] p-6">
             <button
               type="submit"
               disabled={isSubmitting || !selectedFile || !formData.description.trim()}
-              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-4 px-6 rounded-xl hover:from-blue-700 hover:to-indigo-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center space-x-2"
+              className="w-full bg-cyan-500/10 border border-cyan-400 text-cyan-300 font-bold uppercase tracking-widest text-sm py-4 px-6 rounded-xl hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_rgba(6,182,212,0.8)] disabled:bg-gray-800 disabled:border-gray-600 disabled:text-gray-500 disabled:shadow-none transition-all duration-300 flex items-center justify-center space-x-2"
             >
               {isSubmitting ? (
                 <>
                   <Loader2 className="animate-spin" size={20} />
-                  <span>Submitting Complaint...</span>
+                  <span>Transmitting Data...</span>
                 </>
               ) : (
                 <>
                   <FileText size={20} />
-                  <span>Submit Complaint</span>
+                  <span>Submit Data Log</span>
                 </>
               )}
             </button>
             
-            <p className="text-sm text-gray-500 text-center mt-3">
+            <p className="text-sm text-cyan-500 text-center mt-3">
               * Image and description are required fields
             </p>
           </div>

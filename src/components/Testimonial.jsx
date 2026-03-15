@@ -55,15 +55,18 @@ const Testimonial = () => {
 	};
 
 	return (
-		<div className="py-16 px-4">
-			<h1 className="text-center text-4xl font-bold text-gray-100">
-				Testimonials
+		<div className="py-20 px-4 relative z-10 w-full flex flex-col items-center">
+			{/* Decorative Top Border */}
+			<div className="w-full max-w-2xl h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent mb-12"></div>
+			
+			<h1 className="text-center text-4xl font-bold text-white tracking-wide uppercase drop-shadow-[0_0_10px_rgba(6,182,212,0.8)]">
+				OPERATOR LOGS
 			</h1>
-			<p className="text-center text-gray-200 mt-1">
-				We have collected some testimonials from our users. They are real people
-				who have used our product.
+			<p className="text-center text-cyan-400 font-mono text-sm mt-3 tracking-widest max-w-xl opacity-80">
+				CIVILIAN FEEDBACK AND SYSTEM INTEGRATION CONFIRMATIONS.
 			</p>
-			<div className="flex flex-wrap items-center justify-center gap-6 mt-12">
+			
+			<div className="flex flex-wrap items-center justify-center gap-8 mt-16 max-w-7xl mx-auto">
 				{testimonials.map((testimonial, index) => (
 					<TestimonialCard
 						key={index}
@@ -76,6 +79,9 @@ const Testimonial = () => {
 					/>
 				))}
 			</div>
+			
+			{/* Decorative Bottom Border */}
+			<div className="w-full max-w-2xl h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent mt-20"></div>
 		</div>
 	);
 };

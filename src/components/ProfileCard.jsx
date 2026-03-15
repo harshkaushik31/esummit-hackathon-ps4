@@ -18,34 +18,34 @@ const ProfileCard = ({ name, role, description, image }) => {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setVisible(true)}
       onMouseLeave={() => setVisible(false)}
-      className="relative w-80 h-96 rounded-xl p-px bg-gray-900 backdrop-blur-md text-gray-800 overflow-hidden shadow-lg cursor-pointer"
+      className="relative w-80 h-96 rounded-xl p-px bg-gray-950 backdrop-blur-md text-gray-200 overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] cursor-pointer border border-cyan-500/20 group"
     >
       <div
-        className={`pointer-events-none blur-3xl rounded-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-300 size-60 absolute z-0 transition-opacity duration-500 ${
+        className={`pointer-events-none blur-3xl rounded-full bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-300 size-60 absolute z-0 transition-opacity duration-500 ${
           visible ? "opacity-100" : "opacity-0"
         }`}
         style={{ top: position.y - 120, left: position.x - 120 }}
       />
 
-      <div className="relative z-10 bg-gray-800/75 p-6 h-full w-full rounded-[11px] flex flex-col items-center justify-center text-center">
+      <div className="relative z-10 bg-gray-950/80 p-6 h-full w-full rounded-[10px] flex flex-col items-center justify-center text-center transition-all duration-300 group-hover:bg-gray-950/70">
         <Image
           src={image}
           width={300}
           height={400}
           alt="Profile Avatar"
-          className="w-24 h-24 rounded-full shadow-md my-4"
+          className="w-24 h-24 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.4)] my-4 border border-cyan-500/50"
         />
-        <h2 className="text-2xl font-bold text-white mb-1">{name}</h2>
-        <p className="text-sm text-indigo-500 font-medium mb-4">{role}</p>
-        <p className="text-sm text-slate-400 mb-4 px-4">{description}</p>
-        <div className="flex space-x-4 mb-4 text-xl text-slate-400">
+        <h2 className="text-2xl font-bold text-white mb-1 uppercase tracking-wide drop-shadow-[0_0_5px_rgba(6,182,212,0.5)]">{name}</h2>
+        <p className="text-xs text-cyan-400 font-semibold mb-4 tracking-widest uppercase">{role}</p>
+        <p className="text-sm text-slate-400 mb-4 px-4 font-mono">{description}</p>
+        <div className="flex space-x-4 mb-4 text-xl text-slate-500">
           <a
             href="#"
             target="_blank"
-            className="hover:-translate-y-0.5 transition"
+            className="hover:-translate-y-1 hover:text-cyan-400 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)] transition-all duration-300"
           >
             <svg
-              className="size-7"
+              className="size-6"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -64,10 +64,10 @@ const ProfileCard = ({ name, role, description, image }) => {
           <a
             href="#"
             target="_blank"
-            className="hover:-translate-y-0.5 transition"
+            className="hover:-translate-y-1 hover:text-cyan-400 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)] transition-all duration-300"
           >
             <svg
-              className="size-7"
+              className="size-6"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -88,10 +88,10 @@ const ProfileCard = ({ name, role, description, image }) => {
           <a
             href="#"
             target="_blank"
-            className="hover:-translate-y-0.5 transition"
+            className="hover:-translate-y-1 hover:text-cyan-400 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)] transition-all duration-300"
           >
             <svg
-              className="size-7"
+              className="size-6"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               width="24"

@@ -2,9 +2,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getDepartmentBySlug, getDepartmentSlugs } from "@/config/departments.config";
 import complaintModel from "@/models/complaint.model";
-import QuickActionCard from "../_components/QuickActionCard";
-import StatCard from "../_components/StatCard";
 import { connectDB } from "@/utils/connectDB";
+import DashboardClient from "./DashboardClient";
 
 // For static generation
 export function generateStaticParams() {
@@ -43,8 +42,6 @@ async function getDepartmentStats(deptSlug) {
       },
     ]);
 
-    console.log("Stats:", stats);
-
     const formattedStats = {
       total: 0,
       pending: 0,
@@ -77,18 +74,19 @@ async function getDepartmentStats(deptSlug) {
 async function getRecentComplaints(deptSlug) {
   try {
     await connectDB();
-
-    // FIXED: Added await here
     const recentComplaints = await complaintModel
       .find({ assignedDepartment: deptSlug })
       .sort({ createdAt: -1 })
-      .limit(10)
+      .limit(30) // Fetch more to populate the kanban properly
       .select('_id issueType status location createdAt description')
       .lean();
-
-    console.log("Recent Complaints:", recentComplaints);
-
-    return recentComplaints;
+    
+    // Serialize IDs for client component
+    return recentComplaints.map(c => ({
+      ...c,
+      _id: c._id.toString(),
+      createdAt: c.createdAt.toISOString(),
+    }));
   } catch (error) {
     console.log('Error fetching recent complaints: ', error);
     return [];
@@ -107,18 +105,21 @@ export default async function DepartmentDashboard({ params }) {
   const recentComplaints = await getRecentComplaints(deptSlug);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black text-cyan-50 font-mono">
+      {/* Holographic Background Grid */}
+      <div className="fixed inset-0 bg-[linear-gradient(rgba(6,182,212,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none z-0" />
+      
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="relative z-10 bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_4px_20px_rgba(6,182,212,0.15)] border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Link
                 href="/department"
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-cyan-600 hover:text-cyan-400 hover:shadow-[0_0_8px_rgba(6,182,212,0.8)] transition-all"
               >
                 <svg
-                  className="w-6 h-6"
+                  className="w-8 h-8 drop-shadow-[0_0_5px_currentColor]"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -133,12 +134,12 @@ export default async function DepartmentDashboard({ params }) {
               </Link>
               <div>
                 <div className="flex items-center gap-3">
-                  <span className="text-3xl">{department.icon}</span>
+                  <span className="text-3xl drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]">{department.icon}</span>
                   <div>
-                    <h1 className="text-2xl font-bold text-gray-900">
-                      {department.shortName}
+                    <h1 className="text-2xl font-bold text-cyan-300 uppercase tracking-widest drop-shadow-[0_0_8px_currentColor]">
+                      {department.shortName} COMMAND
                     </h1>
-                    <p className="text-sm text-gray-600">{department.name}</p>
+                    <p className="text-xs font-bold text-cyan-600 uppercase tracking-widest">{department.name}</p>
                   </div>
                 </div>
               </div>
@@ -147,141 +148,14 @@ export default async function DepartmentDashboard({ params }) {
         </div>
       </div>
 
-      {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <StatCard
-            title="Total Complaints"
-            value={stats.total}
-            color={department.color}
-            icon="📊"
-          />
-          <StatCard
-            title="Pending"
-            value={stats.pending}
-            color="#F59E0B"
-            icon="⏳"
-          />
-          <StatCard
-            title="In Progress"
-            value={stats.inProgress}
-            color="#3B82F6"
-            icon="🔄"
-          />
-          <StatCard
-            title="Resolved"
-            value={stats.resolved}
-            color="#10B981"
-            icon="✅"
-          />
-        </div>
-
-        {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <QuickActionCard
-            title="All Complaints"
-            description="View and manage all complaints"
-            href={`/department/${deptSlug}/complaints`}
-            icon="📋"
-            color={department.color}
-          />
-          <QuickActionCard
-            title="Pending Review"
-            description="Complaints waiting for action"
-            href={`/department/${deptSlug}/complaints/pending`}
-            icon="⏳"
-            color="#F59E0B"
-            badge={stats.pending}
-          />
-          <QuickActionCard
-            title="Resolved"
-            description="View Resolved Complaints"
-            href={`/department/${deptSlug}/complaints/resolved`}
-            icon="✅"
-            color="#88e788"
-          />
-        </div>
-
-        {/* Recent Complaints */}
-        <div className="bg-white rounded-lg shadow-sm border">
-          <div className="px-6 py-4 border-b flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-gray-900">
-              Recent Complaints
-            </h2>
-            <Link
-              href={`/department/${deptSlug}/complaints`}
-              className="text-sm font-medium hover:underline"
-              style={{ color: department.color }}
-            >
-              View All →
-            </Link>
-          </div>
-          <div className="divide-y">
-            {recentComplaints.length > 0 ? (
-              recentComplaints.map((complaint) => (
-                <Link
-                  key={complaint._id.toString()}
-                  href={`/department/${deptSlug}/complaints/${complaint._id}`}
-                  className="block p-6 hover:bg-gray-50 transition-colors"
-                >
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <h3 className="text-base font-semibold text-gray-900 mb-1">
-                        {complaint.issueType}
-                      </h3>
-                      {complaint.description && (
-                        <p className="text-sm text-gray-600 mb-2 line-clamp-2">
-                          {complaint.description}
-                        </p>
-                      )}
-                      <div className="flex items-center gap-3 text-xs text-gray-500">
-                        <span>
-                          {new Date(complaint.createdAt).toLocaleDateString('en-IN', {
-                            day: 'numeric',
-                            month: 'short',
-                            year: 'numeric'
-                          })}
-                        </span>
-                        {complaint.location && (
-                          <>
-                            <span>•</span>
-                            <span className="flex items-center gap-1">
-                              📍 {complaint.location.address}
-                            </span>
-                          </>
-                        )}
-                      </div>
-                    </div>
-                    <div className="ml-4">
-                      <span
-                        className={`px-3 py-1 text-xs font-medium rounded-full ${
-                          complaint.status === 'pending'
-                            ? 'bg-yellow-100 text-yellow-800'
-                            : complaint.status === 'in_progress'
-                            ? 'bg-blue-100 text-blue-800'
-                            : complaint.status === 'resolved'
-                            ? 'bg-green-100 text-green-800'
-                            : 'bg-red-100 text-red-800'
-                        }`}
-                      >
-                        {complaint.status === 'in_progress' 
-                          ? 'In Progress' 
-                          : complaint.status.charAt(0).toUpperCase() + complaint.status.slice(1)}
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              ))
-            ) : (
-              <div className="p-6">
-                <p className="text-gray-500 text-center py-8">
-                  No complaints found for this department
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
+      {/* Main Content Area (Client Component) */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+        <DashboardClient 
+          stats={stats} 
+          initialRecentComplaints={recentComplaints} 
+          department={department} 
+          deptSlug={deptSlug} 
+        />
       </div>
     </div>
   );

@@ -67,15 +67,15 @@ export default async function ResolvedComplaintsPage({ params }) {
   const resolvedComplaints = await getResolvedComplaints(deptSlug);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Link
                 href={`/department/${deptSlug}`}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-gray-400 hover:text-cyan-400 transition-colors"
               >
                 <svg
                   className="w-6 h-6"
@@ -95,10 +95,10 @@ export default async function ResolvedComplaintsPage({ params }) {
                 <div className="flex items-center gap-3">
                   <span className="text-3xl">✅</span>
                   <div>
-                    <h1 className="text-2xl font-bold text-gray-900">
+                    <h1 className="text-2xl font-bold text-cyan-100">
                       Resolved Complaints
                     </h1>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-cyan-400">
                       {department.name} • {resolvedComplaints.length} resolved
                     </p>
                   </div>
@@ -110,13 +110,13 @@ export default async function ResolvedComplaintsPage({ params }) {
             <div className="flex gap-3">
               <Link
                 href={`/department/${deptSlug}/complaints`}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
+                className="px-4 py-2 text-sm font-medium text-cyan-300 bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 border border-cyan-500/50 rounded-lg hover:bg-black"
               >
                 All Complaints
               </Link>
               <Link
                 href={`/department/${deptSlug}/complaints/pending`}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
+                className="px-4 py-2 text-sm font-medium text-cyan-300 bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 border border-cyan-500/50 rounded-lg hover:bg-black"
               >
                 Pending
               </Link>
@@ -146,10 +146,10 @@ export default async function ResolvedComplaintsPage({ params }) {
               </svg>
             </div>
             <div>
-              <h2 className="text-lg font-semibold text-gray-900">
+              <h2 className="text-lg font-semibold text-cyan-100">
                 {resolvedComplaints.length} Complaints Successfully Resolved
               </h2>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-cyan-400">
                 Great work! These issues have been addressed and closed
               </p>
             </div>
@@ -157,7 +157,7 @@ export default async function ResolvedComplaintsPage({ params }) {
         </div>
 
         {/* Complaints List */}
-        <div className="bg-white rounded-lg shadow-sm border">
+        <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-lg shadow-sm border">
           <div className="divide-y">
             {resolvedComplaints.length > 0 ? (
               resolvedComplaints.map((complaint) => (
@@ -169,7 +169,7 @@ export default async function ResolvedComplaintsPage({ params }) {
               ))
             ) : (
               <div className="p-12 text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-900/50 rounded-full mb-4">
                   <svg
                     className="w-8 h-8 text-gray-400"
                     fill="none"
@@ -184,10 +184,10 @@ export default async function ResolvedComplaintsPage({ params }) {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg font-semibold text-cyan-100 mb-2">
                   No Resolved Complaints Yet
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-cyan-400">
                   Resolved complaints for {department.name} will appear here.
                 </p>
               </div>

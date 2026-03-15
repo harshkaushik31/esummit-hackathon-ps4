@@ -16,7 +16,7 @@ export default function NotFound() {
 
       <Link
         href="/"
-        className="group flex items-center gap-1 bg-white hover:bg-gray-200 px-7 py-2.5 text-gray-800 rounded-full mt-10 font-medium active:scale-95 transition-all"
+        className="group flex items-center gap-1 bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 hover:bg-gray-800/50 px-7 py-2.5 text-cyan-200 rounded-full mt-10 font-medium active:scale-95 transition-all"
       >
         Back to Home
         <svg

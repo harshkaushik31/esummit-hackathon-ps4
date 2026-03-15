@@ -32,12 +32,12 @@ export default function VerifyEmailPage() {
 
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-white rounded-2xl shadow-2xl p-8 text-center">
+      <div className="max-w-md w-full bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-2xl shadow-2xl p-8 text-center">
         {/* Header */}
         <div className="mb-8">
           <div className="mx-auto w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
             <svg
-              className="w-8 h-8 text-indigo-600"
+              className="w-8 h-8 text-cyan-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -50,13 +50,13 @@ export default function VerifyEmailPage() {
               />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Verify Email</h1>
-          <p className="text-gray-600">Click the button below to verify your email address</p>
+          <h1 className="text-3xl font-bold text-cyan-100 mb-2">Verify Email</h1>
+          <p className="text-cyan-400">Click the button below to verify your email address</p>
         </div>
 
         {/* Token Status */}
-        <div className="mb-6 p-4 bg-gray-50 rounded-lg">
-          <p className="text-sm text-gray-600 mb-2">Token Status:</p>
+        <div className="mb-6 p-4 bg-black rounded-lg">
+          <p className="text-sm text-cyan-400 mb-2">Token Status:</p>
           <p className={`text-sm font-mono break-all ${token ? 'text-green-600' : 'text-red-600'}`}>
             {token ? token : "Could not get token from URL"}
           </p>
@@ -70,7 +70,7 @@ export default function VerifyEmailPage() {
             className={`w-full h-12 rounded-full text-white font-medium transition-all duration-200 mb-6 ${
               !token || loading
                 ? 'bg-gray-400 cursor-not-allowed' 
-                : 'bg-indigo-600 hover:bg-indigo-700 hover:shadow-lg transform hover:-translate-y-0.5'
+                : 'bg-cyan-500/10 border border-cyan-400 text-cyan-300 hover:bg-cyan-400 text-black hover:shadow-lg transform hover:-translate-y-0.5'
             }`}
           >
             {loading ? (
@@ -118,7 +118,7 @@ export default function VerifyEmailPage() {
               </svg>
             </div>
             <h2 className="text-2xl font-bold text-green-600 mb-2">Email Verified!</h2>
-            <p className="text-gray-600 mb-6">Your email has been successfully verified.</p>
+            <p className="text-cyan-400 mb-6">Your email has been successfully verified.</p>
             <Link 
               href="/login"
               className="w-full h-12 bg-green-600 hover:bg-green-700 text-white font-medium rounded-full transition-all duration-200 hover:shadow-lg transform hover:-translate-y-0.5 flex items-center justify-center"
@@ -147,7 +147,7 @@ export default function VerifyEmailPage() {
               </svg>
             </div>
             <h2 className="text-2xl font-bold text-red-600 mb-2">Verification Failed</h2>
-            <p className="text-gray-600 mb-6">There was an error verifying your email. The token may be invalid or expired.</p>
+            <p className="text-cyan-400 mb-6">There was an error verifying your email. The token may be invalid or expired.</p>
             <div className="space-y-3">
               <Link 
                 href="/login"
@@ -160,7 +160,7 @@ export default function VerifyEmailPage() {
                   setError(false);
                   setVerified(false);
                 }}
-                className="w-full h-12 bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium rounded-full transition-all duration-200"
+                className="w-full h-12 bg-gray-800/50 hover:bg-gray-300 text-cyan-300 font-medium rounded-full transition-all duration-200"
               >
                 Try Again
                 </button>
@@ -169,9 +169,9 @@ export default function VerifyEmailPage() {
         )}
 
         {/* Footer */}
-        <div className="mt-8 pt-6 border-t border-gray-200">
-          <p className="text-sm text-gray-500">
-            Need help? <Link href="/contact" className="text-indigo-600 hover:text-indigo-700">Contact Support</Link>
+        <div className="mt-8 pt-6 border-t border-cyan-500/30">
+          <p className="text-sm text-cyan-500">
+            Need help? <Link href="/contact" className="text-cyan-400 hover:text-indigo-700">Contact Support</Link>
           </p>
         </div>
       </div>

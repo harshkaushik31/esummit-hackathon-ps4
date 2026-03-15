@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function QuickActionCard({ title, description, href, icon, color, badge }) {
   return (
     <Link href={href} className="group">
-      <div className="bg-white rounded-lg shadow-sm border p-6 hover:shadow-md transition-all hover:border-opacity-50"
+      <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-lg shadow-sm border p-6 hover:shadow-md transition-all hover:border-opacity-50"
         style={{ borderColor: `${color}30` }}>
         <div className="flex items-start justify-between mb-3">
           <div
@@ -22,10 +22,10 @@ export default function QuickActionCard({ title, description, href, icon, color,
             </span>
           )}
         </div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-1 group-hover:underline">
+        <h3 className="text-lg font-semibold text-cyan-100 mb-1 group-hover:underline">
           {title}
         </h3>
-        <p className="text-sm text-gray-600">{description}</p>
+        <p className="text-sm text-cyan-400">{description}</p>
       </div>
     </Link>
   );

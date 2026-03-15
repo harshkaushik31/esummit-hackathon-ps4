@@ -125,12 +125,12 @@ const PrivacyPolicy = () => {
       {/* Buttons */}
       <div className="grid grid-cols-2 gap-2 mt-8 text-sm">
         <Link href={`/login`}>
-          <button className="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 transition rounded-full">
+          <button className="px-8 py-3 bg-cyan-500/10 border border-cyan-400 text-cyan-300 hover:bg-cyan-400 text-black transition rounded-full">
             Get Started
           </button>
         </Link>
         <Link href={`/about`}>
-          <button className="flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-6 py-3">
+          <button className="flex items-center gap-2 bg-gray-950/80 backdrop-blur-md border border-cyan-500/30/10 border border-white/15 rounded-full px-6 py-3">
             <span>Learn More</span>
             <svg
               className="mt-0.5"

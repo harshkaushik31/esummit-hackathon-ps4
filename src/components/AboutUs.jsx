@@ -16,7 +16,7 @@ const AboutUs = () => {
         <h1 className="text-xl uppercase font-semibold text-white">
           What we do?
         </h1>
-        <div className="w-24 h-[3px] rounded-full bg-gradient-to-r from-indigo-600 to-[#DDD9FF]"></div>
+        <div className="w-24 h-[3px] rounded-full bg-gradient-to-r from-cyan-900 to-[#DDD9FF]"></div>
         <p className="mt-8 text-white">
           Civic Buddy is a citizen-first platform that empowers people to report
           municipal and civic issues directly to the responsible government

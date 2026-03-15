@@ -104,7 +104,7 @@ export default function Page() {
       case 'rejected':
         return 'bg-red-100 text-red-800 border-red-200';
       default:
-        return 'bg-gray-100 text-gray-800 border-gray-200';
+        return 'bg-gray-900/50 text-cyan-200 border-cyan-500/30';
     }
   };
 
@@ -138,24 +138,26 @@ export default function Page() {
   // Loading screen
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 md:p-6">
-        <div className="max-w-4xl mx-auto">
+      <div className="min-h-screen bg-black relative overflow-hidden p-4 md:p-6 text-cyan-50 font-mono">
+        {/* Holographic Background Grid */}
+        <div className="fixed inset-0 bg-[linear-gradient(rgba(6,182,212,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none z-0" />
+        <div className="max-w-4xl mx-auto relative z-10">
           <div className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-              Delete Complaints
+            <h1 className="text-3xl md:text-4xl font-bold text-cyan-400 mb-2 uppercase tracking-widest drop-shadow-[0_0_8px_currentColor]">
+              Remove Records
             </h1>
-            <p className="text-gray-600 text-lg">Loading your complaints...</p>
+            <p className="text-cyan-50 text-lg tracking-widest uppercase text-xs">Loading Log Data...</p>
           </div>
           
-          <div className="bg-white rounded-2xl shadow-xl p-8">
+          <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-2xl shadow-xl p-8">
             <div className="animate-pulse space-y-6">
               <div className="h-4 bg-gray-300 rounded w-1/3"></div>
               <div className="space-y-4">
                 {[1, 2, 3].map(i => (
                   <div key={i} className="border rounded-xl p-4">
                     <div className="h-6 bg-gray-300 rounded mb-2"></div>
-                    <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                    <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                    <div className="h-4 bg-gray-800/50 rounded w-3/4 mb-2"></div>
+                    <div className="h-4 bg-gray-800/50 rounded w-1/2"></div>
                   </div>
                 ))}
               </div>
@@ -167,18 +169,20 @@ export default function Page() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 md:p-6">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-black relative overflow-hidden p-4 md:p-6 text-cyan-50 font-mono">
+      {/* Holographic Background Grid */}
+      <div className="fixed inset-0 bg-[linear-gradient(rgba(6,182,212,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none z-0" />
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center mb-4">
-            <Trash2 className="text-red-600 mr-3" size={40} />
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Delete Complaints
+            <Trash2 className="text-red-500 mr-3" size={40} />
+            <h1 className="text-3xl md:text-4xl font-bold text-cyan-400 uppercase tracking-widest drop-shadow-[0_0_8px_currentColor]">
+              Remove Records
             </h1>
           </div>
-          <p className="text-gray-600 text-lg">
-            Manage and remove your pending complaints
+          <p className="text-cyan-50 text-lg">
+            Manage and remove pending telemetry logs
           </p>
 
         </div>
@@ -203,25 +207,25 @@ export default function Page() {
         )}
 
         {/* Search and Filter */}
-        <div className="bg-white rounded-2xl shadow-xl p-6 mb-8">
+        <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.1)] p-6 mb-8">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-cyan-600" size={20} />
               <input
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search complaints by description, type, or location..."
-                className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Search logs by description, type, or vector..."
+                className="w-full pl-12 pr-4 py-3 bg-black border border-cyan-500/50 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-cyan-50 placeholder-cyan-800 transition-colors"
               />
             </div>
             
             <div className="relative">
-              <Filter className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <Filter className="absolute left-4 top-1/2 transform -translate-y-1/2 text-cyan-600" size={20} />
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="pl-12 pr-8 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white transition-colors"
+                className="pl-12 pr-8 py-3 bg-black border border-cyan-500/50 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-cyan-50 transition-colors uppercase tracking-widest text-xs font-bold"
               >
                 <option value="all">All Status</option>
                 <option value="pending">Pending</option>
@@ -235,12 +239,12 @@ export default function Page() {
 
         {/* No Complaints */}
         {filteredComplaints.length === 0 && !loading && (
-          <div className="bg-white rounded-2xl shadow-xl p-12 text-center">
+          <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-2xl shadow-xl p-12 text-center">
             <FileText className="mx-auto text-gray-400 mb-6" size={64} />
-            <h3 className="text-gray-700 font-semibold text-xl mb-3">
+            <h3 className="text-cyan-300 font-semibold text-xl mb-3">
               {searchTerm || filterStatus !== 'all' ? 'No Matching Complaints' : 'No Complaints Found'}
             </h3>
-            <p className="text-gray-500 mb-6">
+            <p className="text-cyan-500 mb-6">
               {searchTerm || filterStatus !== 'all' 
                 ? 'Try adjusting your search or filter criteria.' 
                 : 'You haven\'t submitted any complaints yet.'
@@ -258,17 +262,17 @@ export default function Page() {
         {/* Complaints List */}
         <div className="space-y-6">
           {filteredComplaints.map((complaint) => (
-            <div key={complaint._id} className="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div key={complaint._id} className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.1)] overflow-hidden">
               {/* Status Header */}
-              <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4">
+              <div className="bg-gray-900 border-b border-cyan-500/30 p-4">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-3 text-cyan-300">
                     <FileText size={20} />
-                    <span className="font-semibold capitalize">
+                    <span className="font-bold tracking-widest uppercase text-sm">
                       {complaint.issueType?.replace('-', ' ') || 'Issue'}
                     </span>
                   </div>
-                  <span className={`px-3 py-1 rounded-full text-sm font-semibold border ${getStatusColor(complaint.status)}`}>
+                  <span className={`px-3 py-1 rounded-sm text-[10px] tracking-widest uppercase font-bold border ${getStatusColor(complaint.status)}`}>
                     {complaint.status || 'Unknown'}
                   </span>
                 </div>
@@ -277,34 +281,42 @@ export default function Page() {
               <div className="p-6">
                 {/* Complaint Details */}
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Complaint Details</h3>
+                  <div className="bg-black/40 p-4 rounded-lg border border-cyan-900/50">
+                    <h3 className="text-sm font-bold tracking-widest uppercase text-cyan-500 mb-3 border-b border-cyan-900/50 pb-2">Log Details</h3>
                     <div className="space-y-2">
-                      <p className="text-gray-700 leading-relaxed">{complaint.description}</p>
+                      <p className="text-cyan-50 leading-relaxed text-sm">{complaint.description}</p>
                       
                       {complaint.assignedDepartment && (
-                        <div className="flex items-center text-sm text-gray-600">
-                          <User size={16} className="mr-2" />
-                          <span>Assigned to: {complaint.assignedDepartment}</span>
+                        <div className="flex items-center text-[10px] font-bold tracking-widest text-teal-400 mt-4 uppercase">
+                          <User size={14} className="mr-2" />
+                          <span>Sector: {complaint.assignedDepartment}</span>
                         </div>
                       )}
                     </div>
                   </div>
 
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Timeline & Location</h3>
-                    <div className="space-y-3">
-                      <div className="flex items-center text-sm text-gray-600">
-                        <Calendar size={16} className="mr-2 text-blue-500" />
+                  <div className="bg-black/40 p-4 rounded-lg border border-cyan-900/50">
+                    <h3 className="text-sm font-bold tracking-widest uppercase text-cyan-500 mb-3 border-b border-cyan-900/50 pb-2">Telemetry</h3>
+                    <div className="space-y-4">
+                      <div className="flex items-center text-xs text-cyan-100">
+                        <Calendar size={16} className="mr-3 text-cyan-500" />
                         <div>
-                          <p className="font-medium">Submitted: {formatDate(complaint.createdAt)}</p>
-                          <p>Updated: {formatDate(complaint.updatedAt)}</p>
+                          <p className="font-bold text-[10px] text-cyan-600 uppercase tracking-widest">Initial Sequence</p>
+                          <p>{formatDate(complaint.createdAt)}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center text-xs text-cyan-100">
+                        <Clock size={16} className="mr-3 text-cyan-500" />
+                        <div>
+                          <p className="font-bold text-[10px] text-cyan-600 uppercase tracking-widest">Last Mod Scan</p>
+                          <p>{formatDate(complaint.updatedAt)}</p>
                         </div>
                       </div>
 
                       {complaint.location?.address && (
-                        <div className="flex items-start text-sm text-gray-600">
-                          <MapPin size={16} className="mr-2 text-red-500 flex-shrink-0 mt-0.5" />
+                        <div className="flex items-start text-xs text-cyan-100 pt-2 border-t border-cyan-900/50">
+                          <MapPin size={16} className="mr-3 text-red-400 flex-shrink-0 mt-0.5" />
                           <span>{complaint.location.address}</span>
                         </div>
                       )}
@@ -314,50 +326,50 @@ export default function Page() {
 
                 {/* Image Preview */}
                 {complaint.imageUrl && (
-                  <div className="mb-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Evidence</h3>
-                    <div className="rounded-xl overflow-hidden border h-45 w-100">
+                  <div className="mb-6 bg-black/40 p-4 rounded-lg border border-cyan-900/50">
+                    <h3 className="text-sm font-bold tracking-widest uppercase text-cyan-500 mb-3">Evidence Scan</h3>
+                    <div className="rounded-xl overflow-hidden border border-cyan-500/30">
                       <img
                         src={complaint.imageUrl}
-                        alt="Complaint evidence"
-                        className="w-full h-48 object-cover"
+                        alt="Evidence Scan"
+                        className="w-full h-48 object-cover opacity-80 hover:opacity-100 transition-opacity"
                       />
                     </div>
                   </div>
                 )}
 
                 {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200">
+                <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-cyan-500/30">
                   <button
                     onClick={() => router.push(`/user-profile/track-complaint?id=${complaint._id}`)}
-                    className="flex items-center justify-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition-colors"
+                    className="flex items-center justify-center space-x-2 bg-cyan-500/10 border border-cyan-400 text-cyan-300 font-bold uppercase tracking-widest text-xs px-4 py-2 rounded-lg hover:bg-cyan-400 hover:text-black transition-colors"
                   >
                     <Eye size={16} />
-                    <span>View Details</span>
+                    <span>View Telemetry</span>
                   </button>
 
                   {canDeleteComplaint(complaint) ? (
                     <button
                       onClick={() => handleConfirmDelete(complaint)}
                       disabled={deleteLoading === complaint._id}
-                      className="flex items-center justify-center space-x-2 bg-red-600 text-white px-4 py-2 rounded-xl hover:bg-red-700 disabled:bg-red-400 disabled:cursor-not-allowed transition-colors"
+                      className="flex items-center justify-center space-x-2 bg-red-500/10 border border-red-500 text-red-400 font-bold uppercase tracking-widest text-xs px-4 py-2 rounded-lg hover:bg-red-500 hover:text-white disabled:opacity-50 transition-colors"
                     >
                       {deleteLoading === complaint._id ? (
                         <>
                           <Loader2 className="animate-spin" size={16} />
-                          <span>Deleting...</span>
+                          <span>Purging...</span>
                         </>
                       ) : (
                         <>
                           <Trash2 size={16} />
-                          <span>Delete</span>
+                          <span>Purge Data</span>
                         </>
                       )}
                     </button>
                   ) : (
-                    <div className="flex items-center space-x-2 text-gray-500 px-4 py-2">
+                     <div className="flex items-center justify-center space-x-2 bg-gray-900 border border-gray-700 text-gray-400 font-bold uppercase tracking-widest text-xs px-4 py-2 rounded-lg">
                       <AlertTriangle size={16} />
-                      <span className="text-sm">Cannot delete - {complaint.status}</span>
+                      <span className="text-[10px]">Lock Active</span>
                     </div>
                   )}
                 </div>
@@ -369,7 +381,7 @@ export default function Page() {
         {/* Confirm Delete Modal */}
         {showConfirmModal && selectedComplaint && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full">
+            <div className="bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 rounded-2xl shadow-2xl max-w-md w-full">
               <div className="p-6">
                 <div className="flex items-center justify-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
@@ -377,19 +389,19 @@ export default function Page() {
                   </div>
                 </div>
                 
-                <h3 className="text-xl font-bold text-gray-900 text-center mb-2">
+                <h3 className="text-xl font-bold text-cyan-100 text-center mb-2">
                   Delete Complaint?
                 </h3>
                 
-                <p className="text-gray-600 text-center mb-6">
+                <p className="text-cyan-400 text-center mb-6">
                   Are you sure you want to delete this complaint? This action cannot be undone.
                 </p>
                 
-                <div className="bg-gray-50 rounded-xl p-4 mb-6">
-                  <p className="text-sm font-medium text-gray-700 mb-1">
+                <div className="bg-black rounded-xl p-4 mb-6">
+                  <p className="text-sm font-medium text-cyan-300 mb-1">
                     Issue: {selectedComplaint.issueType?.replace('-', ' ')}
                   </p>
-                  <p className="text-sm text-gray-600 truncate">
+                  <p className="text-sm text-cyan-400 truncate">
                     {selectedComplaint.description}
                   </p>
                 </div>
@@ -397,7 +409,7 @@ export default function Page() {
                 <div className="flex space-x-3">
                   <button
                     onClick={() => setShowConfirmModal(false)}
-                    className="flex-1 bg-gray-200 text-gray-800 px-4 py-3 rounded-xl hover:bg-gray-300 transition-colors font-medium"
+                    className="flex-1 bg-gray-800/50 text-cyan-200 px-4 py-3 rounded-xl hover:bg-gray-300 transition-colors font-medium"
                   >
                     Cancel
                   </button>

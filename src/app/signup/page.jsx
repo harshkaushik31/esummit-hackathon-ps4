@@ -63,7 +63,7 @@ const SignupForm = () => {
     <div className="flex items-center justify-center bg-gray-900 h-[100vh]">
       <form
         onSubmit={handleSubmit}
-        className="max-w-96 w-full text-center border border-gray-300/60 rounded-2xl px-8 bg-white"
+        className="max-w-96 w-full text-center border border-cyan-500/50/60 rounded-2xl px-8 bg-gray-950/80 backdrop-blur-md border border-cyan-500/30"
       >
         <Link href={"/"}>
           <div className="flex justify-start pt-4">
@@ -82,11 +82,11 @@ const SignupForm = () => {
           </div>
         </Link>
 
-        <h1 className="text-gray-900 text-3xl mt-10 font-medium">Sign Up</h1>
-        <p className="text-gray-500 text-sm mt-2">Create your account</p>
+        <h1 className="text-cyan-100 text-3xl mt-10 font-medium">Sign Up</h1>
+        <p className="text-cyan-500 text-sm mt-2">Create your account</p>
 
         {/* Name Input */}
-        <div className="flex items-center w-full mt-10 bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
+        <div className="flex items-center w-full mt-10 bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 border border-cyan-500/50/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
             <path
               d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"
@@ -99,13 +99,13 @@ const SignupForm = () => {
             placeholder="Full Name"
             value={formData.name}
             onChange={handleChange}
-            className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
+            className="bg-transparent text-cyan-500 placeholder-gray-500 outline-none text-sm w-full h-full"
             required
           />
         </div>
 
         {/* Email Input */}
-        <div className="flex items-center w-full mt-4 bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
+        <div className="flex items-center w-full mt-4 bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 border border-cyan-500/50/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
           <svg
             width="16"
             height="11"
@@ -126,13 +126,13 @@ const SignupForm = () => {
             placeholder="Email id"
             value={formData.email}
             onChange={handleChange}
-            className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
+            className="bg-transparent text-cyan-500 placeholder-gray-500 outline-none text-sm w-full h-full"
             required
           />
         </div>
 
         {/* Password Input */}
-        <div className="flex items-center mt-4 w-full bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
+        <div className="flex items-center mt-4 w-full bg-gray-950/80 backdrop-blur-md border border-cyan-500/30 border border-cyan-500/50/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
           <svg
             width="13"
             height="17"
@@ -151,7 +151,7 @@ const SignupForm = () => {
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
-            className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
+            className="bg-transparent text-cyan-500 placeholder-gray-500 outline-none text-sm w-full h-full"
             required
           />
         </div>
@@ -165,9 +165,9 @@ const SignupForm = () => {
         >
           {sending ? "Signing up..." : "Sign Up"}
         </button>
-        <p className="text-gray-500 text-sm mt-3 mb-11">
+        <p className="text-cyan-500 text-sm mt-3 mb-11">
           Already have an account?{" "}
-          <Link className="text-indigo-500" href={"/login"}>
+          <Link className="text-cyan-500" href={"/login"}>
             Login
           </Link>
         </p>

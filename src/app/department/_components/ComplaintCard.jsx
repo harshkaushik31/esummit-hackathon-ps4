@@ -15,7 +15,7 @@ export default function ComplaintCard({ complaint, deptSlug }) {
       case 'rejected':
         return 'bg-red-100 text-red-800';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-gray-900/50 text-cyan-200';
     }
   };
 
@@ -35,16 +35,16 @@ export default function ComplaintCard({ complaint, deptSlug }) {
       case 'medium':
         return 'bg-orange-50 text-orange-700 border-orange-200';
       case 'low':
-        return 'bg-gray-100 text-gray-700 border-gray-200';
+        return 'bg-gray-900/50 text-cyan-300 border-cyan-500/30';
       default:
-        return 'bg-gray-100 text-gray-700 border-gray-200';
+        return 'bg-gray-900/50 text-cyan-300 border-cyan-500/30';
     }
   };
 
   return (
     <Link
       href={`/department/${deptSlug}/complaints/${complaint._id}`}
-      className="block p-6 hover:bg-gray-50 transition-colors"
+      className="block p-6 hover:bg-black transition-colors"
     >
       <div className="flex items-start justify-between">
         <div className="flex-1">
@@ -54,14 +54,14 @@ export default function ComplaintCard({ complaint, deptSlug }) {
               complaint.status === 'pending' ? 'bg-amber-100' :
               complaint.status === 'in_progress' ? 'bg-blue-100' :
               complaint.status === 'resolved' ? 'bg-green-100' :
-              'bg-gray-100'
+              'bg-gray-900/50'
             }`}>
               <svg
                 className={`w-5 h-5 ${
                   complaint.status === 'pending' ? 'text-amber-600' :
                   complaint.status === 'in_progress' ? 'text-blue-600' :
                   complaint.status === 'resolved' ? 'text-green-600' :
-                  'text-gray-600'
+                  'text-cyan-400'
                 }`}
                 fill="none"
                 viewBox="0 0 24 24"
@@ -93,7 +93,7 @@ export default function ComplaintCard({ complaint, deptSlug }) {
             </div>
             <div className="flex-1">
               <div className="flex items-start justify-between mb-1">
-                <h3 className="text-lg font-semibold text-gray-900">
+                <h3 className="text-lg font-semibold text-cyan-100">
                   {complaint.issueType}
                 </h3>
                 {complaint.priority && (
@@ -103,7 +103,7 @@ export default function ComplaintCard({ complaint, deptSlug }) {
                 )}
               </div>
               {complaint.description && (
-                <p className="text-sm text-gray-600 mb-2 line-clamp-2">
+                <p className="text-sm text-cyan-400 mb-2 line-clamp-2">
                   {complaint.description}
                 </p>
               )}
@@ -111,7 +111,7 @@ export default function ComplaintCard({ complaint, deptSlug }) {
           </div>
 
           {/* Complaint Metadata */}
-          <div className="flex items-center gap-4 text-xs text-gray-500">
+          <div className="flex items-center gap-4 text-xs text-cyan-500">
             <span className="flex items-center gap-1">
               <svg
                 className="w-4 h-4"

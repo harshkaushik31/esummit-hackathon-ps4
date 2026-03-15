@@ -15,7 +15,7 @@ export default function PendingComplaintCard({ complaint, deptSlug }) {
   return (
     <Link
       href={`/department/${deptSlug}/complaints/${complaint._id}`}
-      className="block p-6 hover:bg-gray-50 transition-colors"
+      className="block p-6 hover:bg-black transition-colors"
     >
       <div className="flex items-start justify-between">
         <div className="flex-1">
@@ -37,11 +37,11 @@ export default function PendingComplaintCard({ complaint, deptSlug }) {
               </svg>
             </div>
             <div className="flex-1">
-              <h3 className="text-lg font-semibold text-gray-900 mb-1">
+              <h3 className="text-lg font-semibold text-cyan-100 mb-1">
                 {complaint.issueType}
               </h3>
               {complaint.description && (
-                <p className="text-sm text-gray-600 mb-2 line-clamp-2">
+                <p className="text-sm text-cyan-400 mb-2 line-clamp-2">
                   {complaint.description}
                 </p>
               )}
@@ -49,7 +49,7 @@ export default function PendingComplaintCard({ complaint, deptSlug }) {
           </div>
 
           {/* Complaint Metadata */}
-          <div className="flex items-center gap-4 text-xs text-gray-500">
+          <div className="flex items-center gap-4 text-xs text-cyan-500">
             <span className="flex items-center gap-1">
               <svg
                 className="w-4 h-4"
